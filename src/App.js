@@ -74,7 +74,6 @@ function App() {
             </Motion>
           </a>
         </div>
-
       </section>
     </div>
   );
