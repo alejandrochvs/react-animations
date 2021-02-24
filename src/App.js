@@ -5,7 +5,7 @@ import {useSpring, animated, interpolate} from 'react-spring';
 import {useGesture} from 'react-with-gesture';
 import {motion} from "framer-motion";
 
-// import {Motion, spring} from 'react-motion';
+import {Motion, spring} from 'react-motion';
 
 import './App.scss';
 
@@ -56,14 +56,25 @@ function App() {
           animate="visible"
           variants={variants}
           drag="x"
-          dragConstraints={{ left: -100, right: 100 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          dragConstraints={{left: -100, right: 100}}
+          whileHover={{scale: 1.1}}
+          whileTap={{scale: 0.9}}
         >
           <div className="fg framer">
             <a href="https://www.framer.com/api/motion/#quick-start" target="_blank">Framer</a>
           </div>
         </motion.div>
+      </section>
+      <section className="item">
+        <div className="fg">
+          <a href="https://github.com/chenglou/react-motion" target="_blank">
+            React-motion&nbsp;
+            <Motion defaultStyle={{x: 0}} style={{x: spring(100)}}>
+              {value => <div>{Math.round(value.x)}</div>}
+            </Motion>
+          </a>
+        </div>
+
       </section>
     </div>
   );
