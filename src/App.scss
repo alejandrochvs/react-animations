@@ -65,7 +65,7 @@ body {
   padding: .5em .25em;
   justify-content: center;
 
-  &.spring {
+  &.spring, &.framer {
     cursor: -webkit-grab;
 
     &:active {
