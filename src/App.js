@@ -1,4 +1,6 @@
 import React from 'react';
+import {useEffect} from 'react';
+import gsap from 'gsap';
 import {useSpring, animated, interpolate} from 'react-spring';
 import {useGesture} from 'react-with-gesture';
 
@@ -6,7 +8,10 @@ import {useGesture} from 'react-with-gesture';
 
 import './App.scss';
 
-function App({children}) {
+function App() {
+  useEffect(() => {
+    gsap.from("#logo", {duration: 3, x: 300, opacity: 0, scale: 0.5});
+  }, [])
   const [bind, {delta, down}] = useGesture();
   const {x, bg, size} = useSpring({
     x: down ? delta[0] : 0,
@@ -26,18 +31,24 @@ function App({children}) {
         <animated.div {...bind()} className="item" style={{background: bg}}>
           <animated.div className="av" style={{transform: avSize, justifySelf: delta[0] < 0 ? 'end' : 'start'}}/>
           <animated.div
-            className="fg"
+            className="fg spring"
             style={{transform: interpolate([x, size], (x, s) => `translate3d(${x}px,0,0) scale(${s})`)}}>
             <a href="https://www.react-spring.io/docs/hooks/basics" target="_blank">React-spring</a>
           </animated.div>
         </animated.div>
       </section>
-      <section>
-        {/*<Motion defaultStyle={{x: 0}} style={{x: spring(10)}}>
-          {value => <div>{value.x}</div>}
-        </Motion>*/}
+      <section className="item">
+        <div className="logo-wrapper fg">
+          <a href="https://greensock.com/get-started/#loading-gsap" target="_blank">Greensock</a>
+          <img id="logo" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/logo-man.svg"/>
+        </div>
       </section>
-      <section></section>
+      <section className="item">
+        <div className="logo-wrapper fg">
+          <a href="https://greensock.com/get-started/#loading-gsap" target="_blank">Greensock</a>
+          <img id="logo" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/logo-man.svg"/>
+        </div>
+      </section>
     </div>
   );
 }
